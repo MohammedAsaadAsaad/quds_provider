@@ -1,16 +1,25 @@
 part of quds_provider;
 
+///Represents an Object or [QudsListNotifier] holder
+///and change notifier.
+///[T] may be an object or [QudsListNotifier]
 class QudsValue<T> {
+  final bool? serializable;
+
   QudsProvider? _provider;
   final String name;
+
   ValueNotifier<T>? _valueNotifier;
   QudsListNotifier? _listNotifier;
-  final bool? serializable;
   bool _isListNotifier = false;
   bool get isListNotifier => _isListNotifier;
 
   final T Function(Map<String, dynamic> json)? jsonGetter;
 
+  ///[name]: the key name of the value, must be unique.
+  ///[value]: an initial value.
+  ///[serializable]: set weather the value can be
+  ///serialized for saving and restoring.
   QudsValue(
       {required this.name,
       required T value,

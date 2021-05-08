@@ -1,9 +1,15 @@
 part of quds_provider;
 
+///Represents a watcher widget of a [QudsProvider], its state reset automatically
+///after any notifiable value of the desired provider,
+///[P] is a generic type of [QudsProvider]
 class QudsProviderWatcher<P extends QudsProvider> extends StatefulWidget {
   final Widget Function(P? provider) builder;
   final bool listen;
 
+  ///[builder]: the builder function of the body of the watcher,
+  ///[listen]: if set to true, this widget will be rebuild if any change reported
+  ///at the related provider. otherwise, it will be built for once.
   const QudsProviderWatcher(
       {Key? key, required this.builder, this.listen = true})
       : super(key: key);

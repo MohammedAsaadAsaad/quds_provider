@@ -1,5 +1,6 @@
 part of quds_provider;
 
+///Represnets a list with change notifier for addition and removing.
 class QudsListNotifier<T> extends Iterable<T> {
   final T Function(Map<String, dynamic>)? jsonCreator;
   QudsListNotifier({Iterable<T>? initialList, this.jsonCreator}) {
