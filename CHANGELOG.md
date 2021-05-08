@@ -6,4 +6,5 @@
 
 ## [0.0.3] - 8-5-2021.
 * Created a repository in gitub
-* Add comments.
+* Added comments.
+* Updated README.md
