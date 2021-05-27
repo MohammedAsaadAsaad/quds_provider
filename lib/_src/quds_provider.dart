@@ -68,5 +68,6 @@ abstract class QudsProvider {
   void fromMap(Map map) {
     var _ = map['values'];
     for (var v in _.keys) _values[v]!._setFromJson(_[v]);
+    fireWatchers();
   }
 }

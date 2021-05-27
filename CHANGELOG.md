@@ -8,3 +8,6 @@
 * Created a repository in gitub
 * Added comments.
 * Updated README.md
+
+## [0.0.4] - 27-5-2021.
+* Fixed some bugs
