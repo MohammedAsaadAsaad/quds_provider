@@ -1,11 +1,12 @@
 part of quds_provider;
 
-///Represent a state manager, holds the values
-///and fires the watchers for any reported change
+/// Represent a state manager, holds the values
+/// and fires the watchers for any reported change
 abstract class QudsProvider {
   Map<String, QudsValue> _values = Map();
   List<Function> _watchers = [];
 
+  /// Create an instance of [QudsProvider]
   QudsProvider() {
     for (var v in getValues()) {
       _values[v.name] = v;
@@ -13,7 +14,7 @@ abstract class QudsProvider {
     }
   }
 
-  ///Gets the desired list of [QudsValue] to be watched.
+  /// Gets the desired list of [QudsValue] to be watched.
   List<QudsValue> getValues();
 
   bool _updateShouldNotify(covariant QudsProvider oldWidget) {
@@ -22,18 +23,18 @@ abstract class QudsProvider {
     return false;
   }
 
-  ///Add custom watcher to be fired in any reported change
+  /// Add custom watcher to be fired in any reported change
   void addWatcher(Function watcher) => _watchers.add(watcher);
 
-  ///Remove an inserted watcher, to stop firing it in any reported change.
+  /// Remove an inserted watcher, to stop firing it in any reported change.
   void removeWatcher(Function watcher) => _watchers.remove(watcher);
 
-  ///Fire the watchers
+  /// Fire the watchers
   void fireWatchers() => _watchers.forEach((element) {
         element.call();
       });
 
-  ///Get the state of this provider as map to be serialized
+  /// Get the state of this provider as map to be serialized
   Map toSerializableMap() {
     var values = Map<String, dynamic>();
 
@@ -64,10 +65,10 @@ abstract class QudsProvider {
     return result;
   }
 
-  ///Restore the saved state
+  /// Restore the saved state
   void fromMap(Map map) {
     var _ = map['values'];
     for (var v in _.keys) _values[v]!._setFromJson(_[v]);
-    fireWatchers();
+    // fireWatchers();
   }
 }

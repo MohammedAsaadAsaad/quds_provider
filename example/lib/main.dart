@@ -6,21 +6,22 @@ import 'providers/counder_provider.dart';
 import 'providers/settings_provider.dart';
 import 'screens/home_page.dart';
 
-void main() {
+void main() async {
+  await appController.restoreStateInSharedPreferences();
   runApp(MyApp());
 }
 
 QudsAppController appController = QudsAppController(
-    encryptionKey: 'YourKeyEncryption',
-    encryptionIV: 'hiihhiih',
-    onAppSet: () => appController.restoreStateInSharedPreferences());
+  encryptionKey: 'YourKeyEncryption',
+  encryptionIV: 'hiihhiih',
+  providers: [counterProvider, settingsProvider, carsProvider],
+);
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return QudsApp(
         controller: appController,
-        providers: [counterProvider, settingsProvider, carsProvider],
         child: QudsProviderWatcher<SettingsProvider>(
           builder: (s) => MaterialApp(
               title: 'Quds Provider Example',

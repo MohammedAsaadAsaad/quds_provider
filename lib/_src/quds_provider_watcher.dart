@@ -4,7 +4,10 @@ part of quds_provider;
 ///after any notifiable value of the desired provider,
 ///[P] is a generic type of [QudsProvider]
 class QudsProviderWatcher<P extends QudsProvider> extends StatefulWidget {
+  /// The child builder with the provider passed.
   final Widget Function(P? provider) builder;
+
+  /// Weather this widget be rebuild when some change of the provider occured.
   final bool listen;
 
   ///[builder]: the builder function of the body of the watcher,

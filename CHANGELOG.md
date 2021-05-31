@@ -11,3 +11,13 @@
 
 ## [0.0.4] - 27-5-2021.
 * Fixed some bugs
+
+## [0.0.5] - 27-5-2021.
+* Fixed some bugs
+
+## [0.0.5+1] - 27-5-2021.
+* Fixed some bugs
+
+## [0.0.6]
+Changed `QudsApp` and `QudsAppController` mechanism,
+Now providers are provided to the `QudsAppController`, not `QudsApp`, and `QudsApp` must have a `QudsAppController` as controller.

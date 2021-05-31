@@ -1,12 +1,15 @@
 part of quds_provider;
 
-///Represents an Object or [QudsListNotifier] holder
-///and change notifier.
-///[T] may be an object or [QudsListNotifier]
+/// Represents an Object or [QudsListNotifier] holder
+/// and change notifier.
+/// [T] may be an object or [QudsListNotifier]
 class QudsValue<T> {
+  /// Weather the value to be serialized for saving and restoring
   final bool? serializable;
 
   QudsProvider? _provider;
+
+  /// The key name of the value, must be unique.
   final String name;
 
   ValueNotifier<T>? _valueNotifier;
@@ -14,12 +17,15 @@ class QudsValue<T> {
   bool _isListNotifier = false;
   bool get isListNotifier => _isListNotifier;
 
+  /// Custome value generator using json map
   final T Function(Map<String, dynamic> json)? jsonGetter;
 
-  ///[name]: the key name of the value, must be unique.
-  ///[value]: an initial value.
-  ///[serializable]: set weather the value can be
-  ///serialized for saving and restoring.
+  /// [name]: the key name of the value, must be unique
+  ///
+  /// [value]: an initial value
+  ///
+  /// [serializable]: set weather the value can be
+  /// serialized for saving and restoring.
   QudsValue(
       {required this.name,
       required T value,
@@ -38,7 +44,10 @@ class QudsValue<T> {
     _provider?.fireWatchers();
   }
 
+  /// Get the current value;
   T get value => _isListNotifier ? _listNotifier as T : _valueNotifier!.value;
+
+  /// Set the current value
   set value(T v) {
     if (_isListNotifier) {
       var temp = v as QudsListNotifier;
@@ -49,7 +58,10 @@ class QudsValue<T> {
       _valueNotifier?.value = v;
   }
 
+  /// Get the current value
   T get v => value;
+
+  /// Set the current value
   set v(T value) => this.value = value;
 
   void _setFromJson(dynamic obj) {

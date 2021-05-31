@@ -23,7 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  quds_provider: ">= 0.0.1 < 9999999.0.0"
+  quds_provider: 
+   path: ../
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -1,6 +1,6 @@
 name: quds_provider
 description: A simple state manager, states now are simple to reach, easy to save and restore.
-version: 0.0.4
+version: 0.0.6
 homepage: https://www.alrazysoft.com
 repository: https://github.com/MohammedAsaadAsaad/quds_provider
 

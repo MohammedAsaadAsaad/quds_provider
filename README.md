@@ -11,7 +11,7 @@ This package introduces to flutter developers a simple state manager.
 
 # How to use:
 ## To create a provider:
-```
+```dart
 class CounterProvider extends QudsProvider {
   QudsValue<int> counter = QudsValue(name: 'counter', value: 0);
 
@@ -34,21 +34,29 @@ SettingsProvider settingsProvider = SettingsProvider();
 
 ## Wrap your app in QudsApp:
 
-```
-QudsApp(
-        providers: [counterProvider, settingsProvider],
+```dart
+QudsAppController appController = QudsAppController(
+  encryptionKey: 'YourKeyEncryption',
+  encryptionIV: 'hiihhiih',
+  providers: [counterProvider, settingsProvider, carsProvider],
+);
+
+Widget build(BuildContext context){
+  return QudsApp(
+        controller: appController,
         child:  MaterialApp(
               title: 'Quds Provider Example',
               home: HomePage()),
         );
+}
 ```
 
 If you want to watch the 'darkTheme change', 
 wrap the MaterialApp in QudsProviderWatcher\<SettingsProvider\>
 
-```
+```dart
 QudsApp(
-        providers: [counterProvider, settingsProvider],
+        controller: appController,
         child: QudsProviderWatcher<SettingsProvider>(
           builder: (s) => MaterialApp(
               title: 'Quds Provider Example',
@@ -61,7 +69,7 @@ QudsApp(
 ```
 
 To reach some value and change it:
-```
+```dart
 
 //Reach the value and change it
 Widget build(BuildContext context) {
@@ -97,7 +105,7 @@ Widget build(BuildContext context) {
 
 To add ability to control the dark theme, using the SettingsProvider:
 
-```
+```dart
 CheckboxListTile(
                         title: Text('Dark Theme'),
                         value: QudsApp.providerOf<SettingsProvider>(context)!
@@ -115,11 +123,16 @@ ____
 To save the current state and restore it, use QudsAppController,
 and you can encrypt the state for protection
 
-```
+```dart
 QudsAppController appController = QudsAppController(
-    encryptionKey: 'YourKeyEncryption',
-    encryptionIV: 'hiihhiih',
-    onAppSet: () => appController.restoreStateInSharedPreferences());
+  encryptionKey: 'YourKeyEncryption',
+  encryptionIV: 'hiihhiih',
+  providers: [counterProvider, settingsProvider, carsProvider],
+);
+
+void main() async{
+await appController.restoreStateInSharedPreferences();
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -130,10 +143,10 @@ class MyApp extends StatelessWidget {
 
 
 
-// //To save the app state:
+// To save the app state:
 // appController.saveStateInSharedPreferences();
 
-// //To restore the app state:
+// To restore the app state:
 // appController.restoreStateInSharedPreferences();
 ```
 ![](https://github.com/MohammedAsaadAsaad/quds_provider/blob/main/screenshots/video3.gif?raw=true)
@@ -141,7 +154,7 @@ class MyApp extends StatelessWidget {
 ## QudsListNotifier
 Use QudsListNotifier to set items in savable state,
 
-```
+```dart
 CarsProvider carsProvider = CarsProvider();
 
 class CarsProvider extends QudsProvider {
@@ -161,8 +174,8 @@ QudsApp(
 ```
 
 And Lists are now watchable!
-```
 
+```dart
 class CarsViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -197,7 +210,7 @@ class CarsViewer extends StatelessWidget {
 ![](https://github.com/MohammedAsaadAsaad/quds_provider/blob/main/screenshots/video4.gif?raw=true)
 
 To update carProvider watchers for some reason:
-```
+```dart
 QudsApp.providerOf<CarsProvider>(context)!.fireWatchers();
 ```
 
