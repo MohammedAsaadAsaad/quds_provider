@@ -1,4 +1,4 @@
-part of quds_provider;
+part of 'src.dart';
 
 /// Represnets a list with change notifier for addition and removing.
 class QudsListNotifier<T> extends Iterable<T> {

@@ -1,4 +1,4 @@
-part of quds_provider;
+part of 'src.dart';
 
 /// Represents an Object or [QudsListNotifier] holder
 /// and change notifier.

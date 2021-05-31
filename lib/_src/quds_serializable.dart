@@ -1,4 +1,4 @@
-part of quds_provider;
+part of 'src.dart';
 
 /// Represents a serializable value to be serialized
 /// for saving and restoring.

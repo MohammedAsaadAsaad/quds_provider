@@ -1,4 +1,4 @@
-part of quds_provider;
+part of 'src.dart';
 
 ///Represents a watcher widget of a [QudsProvider], its state reset automatically
 ///after any notifiable value of the desired provider,

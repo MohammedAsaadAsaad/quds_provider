@@ -1,4 +1,4 @@
-part of quds_provider;
+part of 'src.dart';
 
 /// Represent a state manager, holds the values
 /// and fires the watchers for any reported change

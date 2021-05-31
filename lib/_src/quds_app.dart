@@ -1,4 +1,4 @@
-part of quds_provider;
+part of 'src.dart';
 
 /// Represents the main container of the app.
 class QudsApp extends InheritedWidget {

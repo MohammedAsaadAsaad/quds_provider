@@ -1,4 +1,4 @@
-part of quds_provider;
+part of 'src.dart';
 
 /// A controller to manager the main [QudsApp] of the application
 class QudsAppController {

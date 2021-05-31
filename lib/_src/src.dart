@@ -1,5 +1,3 @@
-library quds_provider;
-
 import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
